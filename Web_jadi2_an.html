@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Baru ini mah</title>
+    <link rel="stylesheet" href="style_keren.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="Overall">
+        <h1>Who are You?</h1>
+        <p>Introduce yourself!</p>
+        <form id="Reg">
+            <h3>Name</h3>
+            <input type="text" placeholder="Input Name" minlength="5" required>
+            <h3>Age</h3>
+            <input type="number" placeholder="Input your Age" min="0" step="1" required>
+            <h3>Hobby</h3>
+            <input type="text" placeholder="Input your Hobby" minlength="5" required>
+            <h3>Favourite Colour</h3>
+            <input type="text" placeholder="Input your Favourite Colour" minlength="5" required>
+            <h3>Home Address</h3>
+            <input type="text" placeholder="Just input your city" minlength="5" required>
+            <h3>Favourite Musical Instrument</h3>
+            <input type="text" placeholder="Input Whatever" minlength="10" required>
+            <h3>Best Friend's Name</h3>
+            <input type="text" placeholder="Input your Best Friend's name" minlength="10" required>
+            <h3>Favourite Type of French Fries</h3>
+            <input type="text" placeholder="Curlies???" minlength="10" required>
+            <h3>What time do you usually go to McDonald's?</h3>
+            <input type="time" placeholder="8:30 AM??" minlength="10" required>
+            <h3>How often do you change your bedsheets in a single week?</h3>
+            <input type="number" placeholder="once?" min="0" step="1" required>
+            <h3>When was the last time you bought a pen?</h3>
+            <input type="text" placeholder="Last Week?" minlength="10" required>
+            <h3>How many unread emails do you have right now?</h3>
+            <input type="number" placeholder="67?" min="0" step="1" required>
+            <h3>Do you have a preferred staircase or hallway at school?</h3>
+            <input type="text" placeholder="Anything duh" minlength="10" required>
+            <h3>What time of day do you usually clip your fingernails?</h3>
+            <input type="text" placeholder="Please be real" minlength="10" required>
+            <h3>What's your usual arrival time at a place when someone tells you to come at exactly 4:00 PM?</h3>
+            <input type="time" required>
+            <h3>What time did you last buy toothpaste?</h3>
+            <input type="text" placeholder="Last month is it?" minlength="25" required>
+            <h3>Do you have a specific order for washing yourself in the shower? If yes, explain</h3>
+            <textarea rows="5" placeholder="6 then 7." minlength="25" required></textarea>
+            <h3>What time do you usually go to McDonald's when you have no particular reason to leave the house? Do you order the same thing every time, or do you suddenly pretend you're a different person when you see the menu?</h3>
+            <textarea rows="5" placeholder="Yappidy yap" minlength="50" required></textarea>
+            <h3>When you eat fries, do you immediately eat the ones that are cold and soggy? Or do you keep digging through the box to find the perfect crispy one?</h3>
+            <textarea rows="5" placeholder="Why are you asking me this?" minlength="50" required></textarea>
+            <h3>What time do you usually realize that your phone battery is getting dangerously low? Do you plug it in immediately, or do you continue using it until the battery percentage starts looking personally offensive?</h3>
+            <textarea rows="5" placeholder="Huh???" minlength="100" required></textarea>
+            <h3>When you unlock your phone to check one notification, how often do you end up opening three different apps before remembering what you originally wanted? Do you ever lock your phone again without completing the task you unlocked it for?</h3>
+            <textarea rows="5" placeholder="Wut?" minlength="100" required></textarea>
+            <h3>When you go to McDonald's on a weekday afternoon, do you usually arrive before or after the school crowd starts showing up? If your usual table is occupied by someone who looks like they're going to stay for another hour, do you choose another table immediately or spend an unreasonable amount of time deciding where to sit?</h3>
+            <textarea rows="10" placeholder="Okay." minlength="200" required></textarea>
+            <br>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+    // Replace these with your own Supabase project details.
+    const SUPABASE_URL = "https://smuqhjbjfpaqcrgcepky.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_gCwMlwGCsHYPVkNw8MDXSQ_4qEg8adf";
+    
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+    
+    const form = document.getElementById("Reg");
+    
+    // Show submission feedback without changing your CSS file.
+    const status = document.createElement("p");
+    status.id = "submitStatus";
+    status.setAttribute("role", "status");
+    form.appendChild(status);
+    
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        
+        const submitButton = form.querySelector(
+        'input[type="submit"], button[type="submit"]'
+    );
+    
+    const fields = [
+      ...form.querySelectorAll(
+        'input:not([type="submit"]), textarea'
+      )
+    ];
+
+    // Read fields in the same order as your existing HTML.
+    const values = fields.map(field => field.value.trim());
+
+    const response = {
+      name: values[0],
+      age: values[1],
+      hobby: values[2],
+      favourite_colour: values[3],
+      home_city: values[4],
+      favourite_instrument: values[5],
+      best_friend_name: values[6],
+      favourite_fries: values[7],
+      mcdonalds_time: values[8],
+      bedsheet_changes: values[9],
+      last_pen_purchase: values[10],
+      unread_emails: values[11],
+      preferred_school_route: values[12],
+      nail_clipping_time: values[13],
+      arrival_time: values[14],
+      last_toothpaste_purchase: values[15],
+      shower_routine: values[16],
+      mcdonalds_habit: values[17],
+      fries_habit: values[18],
+      phone_battery_habit: values[19],
+      phone_notification_habit: values[20],
+      mcdonalds_table_habit: values[21]
+    };
+
+    status.textContent = "Submitting...";
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const { error } = await db
+        .from("questionnaire_responses")
+        .insert([response]);
+
+      if (error) throw error;
+
+      status.textContent = "Submitted successfully! Thank you!";
+      form.reset();
+    } catch (error) {
+        console.error("Supabase submission error:", error);
+        status.textContent = `Error: ${error.message || "Unknown error"}`;
+    } finally {
+        if (submitButton) submitButton.disabled = false;
+    }
+    });
+</script>
+</body>
+</html>
