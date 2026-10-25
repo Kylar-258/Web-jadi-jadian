@@ -1,0 +1,198 @@
+body {
+    background-color: rgb(212, 234, 253);
+    font-family: cursive;
+}
+
+#Overall {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 20px 50px;
+    padding: 20px;
+    background-color: rgb(169, 214, 254);
+    border-radius: 16px;
+}
+
+#Reg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(182, 221, 255);
+    padding: 20px 40px 20px;
+    border-radius: 16px;
+    border: 1px solid white;
+    max-width: 80vw;
+}
+
+#Reg h3 {
+    font-size: xx-large;
+}
+
+#Reg input, #Reg textarea{
+    min-height: 50px;
+    min-width: 65vw;
+    border-radius: 20px;
+    padding: 10px;
+    font-family: cursive;
+}
+
+footer {
+    margin: 20px;
+    font-size: small;
+}
+
+button {
+    font-family: cursive;
+    background-color: aliceblue;
+    border: 1px solid black;
+    border-radius: 12px;
+    box-shadow: 10px;
+    padding: 15px 0px 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 5px rgb(28, 28, 28);
+}
+
+.editor {
+    font-size: small;
+}
+
+#All {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 8vw 50px;
+    padding: 20px;
+    background-color: rgb(169, 214, 254);
+    border-radius: 16px;
+    line-height: 2vh;
+}
+
+#row1A button, #row2A button, #row3A button, #row4A button {
+    min-width: 70vw;
+    max-width: 70vw;
+}
+#ImgB1, #ImgB2, #ImgB3, #ImgB4 {
+    max-height: 400px;
+    max-width: 65vw;
+    border-radius: 10px;
+}
+
+.BButton {
+    margin: 10px 10px 10px;
+    padding: 10px 10px 10px;
+    font-size: 10px;
+    min-width: 60px;
+}
+
+#allMy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(182, 221, 255);
+    border-radius: 12px;
+    margin: 30px 20px 20px;
+    padding: 10px 10px 20px;
+}
+
+#insAllMy {
+    background-color:  rgb(157, 209, 255);
+    min-width: 80vw;
+    padding: 10px 20px 10px;
+    border-radius: 12px;
+}
+
+.a {
+    background-color: aliceblue;
+    padding: 10px 20px 10px;
+    border-radius: 16px;
+    border: 1px solid black;
+}
+
+.q {
+    margin: 10px;
+}
+
+#workAll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#workAll img {
+    max-width: 75vw;
+    height: auto;
+    border-radius: 16px;
+    border: 2px solid black;
+}
+
+#workAll h5 {
+    font-size: 20px;
+}
+
+#A, #B, #C, #D, #E, #F, #G, #H, #I, #J {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(157, 209, 255);
+    min-width: 80vw;
+    border: 3px solid white;
+    border-radius: 10px;
+    margin: 10px 0px 10px;
+    padding: 20px 10px 10px;
+    box-shadow: 0px 5px 3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#A:hover, #B:hover, #C:hover, #D:hover, #E:hover, #F:hover, #G:hover, #H:hover, #I:hover, #J:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 10px 5px;
+}
+
+#sendAll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#f1, #f2, #f3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(157, 209, 255);
+    min-width: 80vw;
+    border: 3px solid white;
+    border-radius: 10px;
+    margin: 10px 0px 50px;
+    padding: 20px 10px 30px;
+    box-shadow: 0px 5px 3px;
+}
+
+#f1 textarea, #f2 textarea, #f3 textarea {
+    min-width: 75vw;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 20px 20px 20px;
+    font-family: cursive;
+}
+
+#f1 input, #f2 input , #f3 input {
+    background-color: aliceblue;
+    border: 2px solid black;
+    border-radius: 10px;
+    min-width: 30vw;
+    min-height: 5vh;
+    font-family: cursive;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#f1 input:hover, #f2 input:hover , #f3 input:hover {
+    transform: scale(1.02);
+    box-shadow: 3px 3px 5px;
+}

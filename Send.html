@@ -1,0 +1,180 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendAsk</title>
+    <link rel="stylesheet" href="style_keren.css">
+</head>
+<body>
+    <header>
+        <button class="BButton" onclick="window.location.href='index.html'">
+            <p>←</p>
+        </button>
+    </header>
+    <div id="sendAll">
+        <h1>Send or Ask him anything</h1>
+        <p>Editor: He might reply to some questions...</p>
+        <div id="forms">
+            <div id="f1">
+                <form id="sendF">
+                    <h3>Send him any message!</h3>
+                    <p class="noted">Note: Remember not to send messages that are harmful, be respectful!</p>
+                    <textarea name="Send" id="Send" rows="5" placeholder="Send!"></textarea>
+                    <br>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+            <div id="f2">
+                <br>
+                <form id="askF">
+                    <h3>Ask him any questions!</h3>
+                    <p class="noted">Note: Remember not to send messages that are harmful, be respectful!</p>
+                    <textarea name="Ask" id="Ask" rows="5" placeholder="Ask!"></textarea>
+                    <br>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+            <div id="f3">
+                <br>
+                <form id="ReqF">
+                    <h3>Request him anything or report an error!</h3>
+                    <p class="noted">Note: Remember not to send messages that are harmful, be respectful!</p>
+                    <textarea name="Req" id="Req" rows="5" placeholder="Request or Report!"></textarea>
+                    <br>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    // 1. Supabase connection
+    const SUPABASE_URL = "https://smuqhjbjfpaqcrgcepky.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_gCwMlwGCsHYPVkNw8MDXSQ_4qEg8adf";
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    // 2. Connect each form to its textarea and category
+    const formSettings = [
+        {
+            formId: "sendF",
+            textareaId: "Send",
+            type: "send",
+            buttonText: "Send"
+        },
+        {
+            formId: "askF",
+            textareaId: "Ask",
+            type: "ask",
+            buttonText: "Ask"
+        },
+        {
+            formId: "ReqF",
+            textareaId: "Req",
+            type: "request",
+            buttonText: "Submit Request"
+        }
+    ];
+
+    // 3. Handle submissions
+    formSettings.forEach(function (settings) {
+        const form = document.getElementById(settings.formId);
+
+        if (!form) {
+            console.error("Cannot find form:", settings.formId);
+            return;
+        }
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const textarea = document.getElementById(
+                settings.textareaId
+            );
+
+            if (!textarea) {
+                console.error(
+                    "Cannot find textarea:",
+                    settings.textareaId
+                );
+                alert("Form error: textarea not found.");
+                return;
+            }
+
+            const message = textarea.value.trim();
+            const button = form.querySelector(
+                'input[type="submit"], button[type="submit"]'
+            );
+
+            // Validate the message
+            if (!message) {
+                alert("Please type a message first!");
+                return;
+            }
+
+            if (message.length > 5000) {
+                alert("Your message cannot exceed 5000 characters.");
+                return;
+            }
+
+            if (button) {
+                button.disabled = true;
+
+                if (button.tagName === "INPUT") {
+                    button.value = "Submitting...";
+                } else {
+                    button.textContent = "Submitting...";
+                }
+            }
+
+            try {
+                console.log("Sending submission:", settings.type);
+
+                // Insert only; do not request returned rows
+                const { error } = await db
+                    .from("send_ask_requests")
+                    .insert({
+                        type: settings.type,
+                        message: message
+                    });
+
+                if (error) {
+                    console.error("Supabase error:", error);
+                    alert("Submission failed: " + error.message);
+                    return;
+                }
+
+                alert("Submitted successfully!");
+                form.reset();
+
+            } catch (error) {
+                console.error("Unexpected error:", error);
+                alert("Something went wrong. Check the browser console.");
+
+            } finally {
+                if (button) {
+                    button.disabled = false;
+
+                    if (button.tagName === "INPUT") {
+                        button.value = settings.buttonText;
+                    } else {
+                        button.textContent = settings.buttonText;
+                    }
+                }
+            }
+        });
+    });
+
+    console.log("SendAsk forms initialized.");
+</script>
+
+</body>
+</html>
