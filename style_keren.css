@@ -34,7 +34,7 @@ body {
     min-width: 65vw;
     border-radius: 20px;
     padding: 10px;
-    font-family: cursive;
+    font-family: 'Caveat', cursive;
 }
 
 footer {
@@ -43,7 +43,7 @@ footer {
 }
 
 button {
-    font-family: cursive;
+    font-family: 'Caveat', cursive;
     background-color: aliceblue;
     border: 1px solid black;
     border-radius: 12px;
@@ -179,7 +179,7 @@ button:hover {
     border-radius: 10px;
     border: 2px solid black;
     padding: 20px 20px 20px;
-    font-family: cursive;
+    font-family: 'Caveat', cursive;
 }
 
 #f1 input, #f2 input , #f3 input {
@@ -188,7 +188,7 @@ button:hover {
     border-radius: 10px;
     min-width: 30vw;
     min-height: 5vh;
-    font-family: cursive;
+    font-family: 'Caveat', cursive;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
