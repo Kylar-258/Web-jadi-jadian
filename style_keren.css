@@ -192,6 +192,11 @@ button:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+#Atitle {
+    line-height: 0.75;
+    text-align: center;
+}
+
 #f1 input:hover, #f2 input:hover , #f3 input:hover {
     transform: scale(1.02);
     box-shadow: 3px 3px 5px;
